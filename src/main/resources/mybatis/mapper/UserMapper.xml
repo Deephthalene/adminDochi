@@ -11,4 +11,53 @@
 		AND
 			grade = 0
 	</select>
+	<select id="getUserList" parameterType="com.vue.dochiAdmin.dto.PageDto" resultType="com.vue.dochiAdmin.dto.UserDto">
+		SELECT
+			uid,
+			email,
+			name,
+			phone,
+			status,
+			nickname
+		FROM
+			user		
+		ORDER BY
+			uid 
+		LIMIT
+			#{pageStart}, #{qty}
+	</select>
+	<select id="getTotalCount" resultType="int">
+		SELECT
+			count(uid)
+		FROM
+			user
+	</select>
+	
+	<select id="searchTotalCount" resultType="int">
+		SELECT
+			count(uid)
+		FROM
+			user
+	</select>
+	<sql id="search">
+  	<if test="type != null">
+  		<trim prefix="and (" suffix=")" prefixOverrides="OR">
+  			<foreach collection="typeToArray" item="type">
+  				<trim prefix="OR">
+  					<choose>
+  						<when test="type == 't'.toString()">
+  							title like concat('%', #{keyword}, '%')
+  						</when>
+  						<when test="type == 'c'.toString()">
+  							content like concat('%', #{keyword}, '%')
+  						</when>
+  						<when test="type == 'w'.toString()">
+  							writer like concat('%', #{keyword}, '%')
+  						</when>
+  					</choose>
+  				</trim>
+  			</foreach>	
+  		</trim>
+  	</if>
+  </sql>
 </mapper>

@@ -1,5 +1,7 @@
 package com.vue.dochiAdmin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.vue.dochiAdmin.dto.PageDto;
 import com.vue.dochiAdmin.dto.UserDto;
+import com.vue.dochiAdmin.paging.Pagination;
 import com.vue.dochiAdmin.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +37,6 @@ public class UserController {
 	public ModelAndView loginPost(ModelAndView mv, String email, String pw , HttpServletRequest request) throws Exception {
 		log.info(" >>>> login check 1");
 		UserDto isUser = userService.loginUser(email, pw);
-		log.info(">>>isUser?" + isUser.toString());
 		if(isUser != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("session", isUser);
@@ -42,9 +44,27 @@ public class UserController {
 			mv.addObject("msg", "1");
 			mv.setViewName("/index");
 		}else {
-			mv.setViewName("/user/login");
 			mv.addObject("msg", "0");
+			mv.setViewName("redirect:/main");
 		}
+		return mv;
+	}
+	
+	@GetMapping("/logout")
+	public ModelAndView logoutGet(ModelAndView mv, HttpServletRequest request) {
+		request.getSession().removeAttribute("session");
+		mv.setViewName("/main");
+		return mv;
+	}
+	
+	@GetMapping("/customers")
+	public ModelAndView customersGet(ModelAndView mv,PageDto pageDto) {
+		List<UserDto> user = userService.getUserList(pageDto);
+		mv.addObject("user", user);
+		int totalCount = userService.getTotalCount(pageDto);
+		Pagination pagination = new Pagination(pageDto, totalCount);
+		mv.addObject("page", pagination);
+		mv.setViewName("/customers");
 		return mv;
 	}
 }
