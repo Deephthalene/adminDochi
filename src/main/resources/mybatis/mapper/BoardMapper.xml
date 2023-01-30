@@ -3,11 +3,13 @@
 <mapper namespace="com.vue.dochiAdmin.mapper.BoardMapper">
 	<select id="listGet" parameterType="com.vue.dochiAdmin.dto.PageDto" resultType="com.vue.dochiAdmin.dto.BoardDto">
 		SELECT
+			uid,
 			type,
 			title,
 			created_user,
 			created_at,
-			view_cnt
+			view_cnt,
+			is_del
 		FROM
 			board
 		ORDER BY
@@ -21,4 +23,25 @@
 		FROM
 			board
 	</select>
+	<select id="detailGet" resultType="com.vue.dochiAdmin.dto.BoardDto">
+		SELECT
+			uid,
+			title,
+			content,
+			created_user,
+			created_at,
+			view_cnt
+		FROM
+			board
+		WHERE
+			uid = #{uid}
+	</select>
+	<update id="removeGet">
+		UPDATE
+			board
+		SET
+			is_del = 1
+		WHERE
+			uid = #{uid}
+	</update>
 </mapper>

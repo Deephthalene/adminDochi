@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.vue.dochiAdmin.dto.BoardDto;
 import com.vue.dochiAdmin.dto.PageDto;
@@ -31,5 +33,20 @@ public class BoardController {
 		mv.addObject("page", pagination);
 		mv.setViewName("/board");
 		return mv;
+	}
+	
+	@GetMapping("/detail")
+	public ModelAndView detailGet(ModelAndView mv, @RequestParam("uid") long uid) {
+		BoardDto board = boardService.detailGet(uid);
+		mv.addObject("board", board);
+		mv.setViewName("/board/detail");
+		return mv;
+	}
+	
+	@GetMapping("/remove")
+	public String removeGet(ModelAndView mv, @RequestParam("uid") long uid, RedirectAttributes reAttr) {
+		boardService.removeGet(uid);
+		return "redirect:/board/list";
+
 	}
 }

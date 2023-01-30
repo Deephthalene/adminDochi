@@ -30,4 +30,16 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.getTotalCount(pageDto);
 	}
 
+
+	@Override
+	public BoardDto detailGet(long uid) {
+		return boardMapper.detailGet(uid);
+	}
+
+
+	@Override
+	public void removeGet(long uid) {
+		boardMapper.removeGet(uid);
+	}
+
 }

@@ -11,4 +11,8 @@ public interface BoardService {
 
 	int getTotalCount(PageDto pageDto);
 
+	BoardDto detailGet(long uid);
+
+	void removeGet(long uid);
+
 }

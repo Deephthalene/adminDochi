@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>board</title>
+<title>Board</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -71,6 +71,8 @@
 												href="#" class="datatable-sorter">작성일시</a></th>
 											<th data-sortable="true" style="width: 13.44860710854947%;"><a
 												href="#" class="datatable-sorter">조회수</a></th>
+											<th data-sortable="true" style="width: 13.44860710854947%;"><a
+												href="#" class="datatable-sorter">활성화 여부</a></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -89,10 +91,20 @@
 													</c:when>
 												</c:choose>
 												</td>
-												<td>${board.title }</td>
+												<td><a href="/board/detail?uid=${board.uid }">${board.title }</a></td>
 												<td>${board.created_user }</td>
 												<td>${board.created_at }</td>
-												<td>${board.view_cnt }</td>												
+												<td>${board.view_cnt }</td>
+												<td data-sortable="true">
+												<c:choose>
+													<c:when test="${board.is_del == 0 }">
+													활성화
+													</c:when>
+													<c:when test="${board.is_del == 1 }">
+													삭제됨
+													</c:when>
+												</c:choose>
+												</td>												
 											</tr>
 										</c:forEach>
 									</tbody>

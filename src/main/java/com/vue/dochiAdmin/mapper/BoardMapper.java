@@ -14,4 +14,8 @@ public interface BoardMapper {
 
 	int getTotalCount(PageDto pageDto);
 
+	BoardDto detailGet(long uid);
+
+	void removeGet(long uid);
+
 }
