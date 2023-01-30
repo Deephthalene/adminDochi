@@ -35,7 +35,6 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public ModelAndView loginPost(ModelAndView mv, String email, String pw , HttpServletRequest request) throws Exception {
-		log.info(" >>>> login check 1");
 		UserDto isUser = userService.loginUser(email, pw);
 		if(isUser != null) {
 			HttpSession session = request.getSession();
@@ -45,7 +44,7 @@ public class UserController {
 			mv.setViewName("/index");
 		}else {
 			mv.addObject("msg", "0");
-			mv.setViewName("redirect:/main");
+			mv.setViewName("/main");
 		}
 		return mv;
 	}

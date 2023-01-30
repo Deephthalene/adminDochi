@@ -21,12 +21,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto loginUser(String email, String pw) throws Exception {
-		log.info(">>> login check2");
 		AES256 aes256 = new AES256();
 		UserDto user = userMapper.getUser(email);
-		log.info(">>>user" + user);
-		log.info(aes256.decrypt(user.getPw()));
-		
 		return user;
 	}
 
