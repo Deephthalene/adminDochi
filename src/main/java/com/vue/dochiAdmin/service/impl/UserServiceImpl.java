@@ -34,5 +34,22 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int getTotalCount(PageDto pageDto) {
 		return userMapper.getTotalCount(pageDto);
+	}
+
+	@Override
+	public UserDto detailGet(long uid) {
+		return userMapper.userDetailGet(uid);
+	}
+
+	@Override
+	public void userStatusChangeGet(long uid) {
+		userMapper.userStatusChangeGet(uid);
+		
+	}
+
+	@Override
+	public void userGradeChangeGet(long uid) {
+		userMapper.userGradeChangeGet(uid);
+		
 	}	
 }

@@ -10,8 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.vue.dochiAdmin.dto.BoardDto;
 import com.vue.dochiAdmin.dto.PageDto;
 import com.vue.dochiAdmin.dto.UserDto;
 import com.vue.dochiAdmin.paging.Pagination;
@@ -65,5 +68,25 @@ public class UserController {
 		mv.addObject("page", pagination);
 		mv.setViewName("/customers");
 		return mv;
+	}
+	
+	@GetMapping("/detail")
+	public ModelAndView UserdetailGet(ModelAndView mv, @RequestParam("uid") long uid) {
+		UserDto user = userService.detailGet(uid);
+		mv.addObject("user", user);
+		mv.setViewName("/user/detail");
+		return mv;
+	}
+	
+	@GetMapping("/remove")
+	public String userStatusChangeGet(ModelAndView mv, @RequestParam("uid") long uid, RedirectAttributes reAttr) {
+		userService.userStatusChangeGet(uid);
+		return "redirect:/user/customers";
+	}
+	
+	@GetMapping("/gradeUp")
+	public String userGradeChangeGet(@RequestParam("uid") long uid, RedirectAttributes reAttr) {
+		userService.userGradeChangeGet(uid);
+		return "redirect:/user/customers";
 	}
 }

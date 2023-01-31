@@ -18,4 +18,10 @@ public interface UserMapper {
 	
 	int searchTotalCount(PageDto pageDto);
 
+	UserDto userDetailGet(long uid);
+
+	void userStatusChangeGet(long uid);
+
+	void userGradeChangeGet(long uid);
+
 }

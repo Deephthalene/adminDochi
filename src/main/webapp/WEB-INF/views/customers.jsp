@@ -79,7 +79,7 @@
 										<c:forEach items="${user }" var="user">
 											<tr>
 												<td data-sortable="true">${user.uid }</td>
-												<td>${user.name }</td>
+												<td><a href="/user/detail?uid=${user.uid }">${user.name }</a></td>
 												<td>${user.email }</td>
 												<td>${user.phone }</td>
 												<td><c:choose>

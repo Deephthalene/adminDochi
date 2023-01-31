@@ -13,4 +13,10 @@ public interface UserService {
 
 	int getTotalCount(PageDto pageDto);
 
+	UserDto detailGet(long uid);
+
+	void userStatusChangeGet(long uid);
+
+	void userGradeChangeGet(long uid);
+
 }

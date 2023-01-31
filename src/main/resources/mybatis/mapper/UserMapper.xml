@@ -39,6 +39,41 @@
 		FROM
 			user
 	</select>
+	<select id="userDetailGet" resultType="com.vue.dochiAdmin.dto.UserDto">
+		SELECT
+			uid,
+			email,
+			name,
+			phone,
+			created_at,
+			status,
+			nickname,
+			grade
+		FROM
+			user
+		WHERE
+			uid = #{uid}
+	</select>
+	
+	<update id="userStatusChangeGet">
+		UPDATE
+			user
+		SET
+			status = 2,
+			updated_at = now()
+		WHERE
+			uid = #{uid}
+	</update>
+	
+	<update id="userGradeChangeGet">
+		UPDATE
+			user
+		SET
+			grade = 0,
+			updated_at = now()
+		WHERE
+			uid = #{uid}
+	</update>
 	<sql id="search">
   	<if test="type != null">
   		<trim prefix="and (" suffix=")" prefixOverrides="OR">
