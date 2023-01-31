@@ -15,10 +15,24 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	crossorigin="anonymous"></script>
+<style type="text/css">
+html, body{
+	height : 100%;
+}
+
+#wrap {
+	min-height: 100%;
+	position: relative;
+	padding-bottom: 69px;
+}
+</style>
 </head>
 <body>
+
+	<div id="wrap">
 	<jsp:include page="./layout/header.jsp"></jsp:include>
 	<jsp:include page="./layout/sidebar.jsp"></jsp:include>
+	
 	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 		<div class="container-fluid px-4">
 			<h1 class="mt-4">Tables</h1>
@@ -136,8 +150,9 @@
 				</div>
 			</div>
 		</div>
-
 	</main>
+	
 	<jsp:include page="./layout/footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

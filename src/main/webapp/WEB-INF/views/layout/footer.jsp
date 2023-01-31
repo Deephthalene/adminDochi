@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+</style>
 </head>
 <body>
 <footer class="py-4 bg-light mt-auto">
