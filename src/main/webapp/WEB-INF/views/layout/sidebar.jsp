@@ -5,8 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+</style>
 </head>
 <body>
+
 	<div class="container-fluid">
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -43,8 +47,8 @@
                 </a>
               </li>
             </ul>
-            </ul>
           </div>
         </nav>
+       
 </body>
 </html>

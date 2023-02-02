@@ -18,7 +18,9 @@ footer{
 				<div class="container-fluid px-4">
 					<div
 						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright © Your Website 2022</div>
+						<div class="text-muted">
+						このサイトはしふんさんとひょひょんさんが一緒に作ったページであり、勝手にハッキングやコピーした場合は。。どうしよう。。。。。。
+    					</div>
 						<div>
 							<a href="#">Privacy Policy</a> · <a href="#">Terms &amp;
 								Conditions</a>

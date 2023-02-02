@@ -19,7 +19,7 @@
 <body>
 	<jsp:include page="./layout/header.jsp"></jsp:include>
 	<jsp:include page="./layout/sidebar.jsp"></jsp:include>
-	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 		<div class="container-fluid px-4">
 			<h1 class="mt-4">Tables</h1>
 			<ol class="breadcrumb mb-4">
