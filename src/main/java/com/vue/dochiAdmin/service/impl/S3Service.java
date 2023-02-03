@@ -5,10 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-import org.apache.http.HttpStatus;
-import org.apache.tomcat.util.http.parser.MediaType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -86,21 +86,30 @@ public class S3Service {
     	byte[] bytes = IOUtils.toByteArray(objectInputStram);
     	
     	HttpHeaders httpHeaders = new HttpHeaders();
-//    	httpHeaders.setContentType(contentType(fileUrl));
+    	httpHeaders.setContentType(contentType(fileUrl));
     	httpHeaders.setContentLength(bytes.length);
     	String[] arr = fileUrl.split("/");
     	String type = arr[arr.length - 1];
     	String fileName = URLEncoder.encode(type, "UTF-8").replaceAll("\\+", "%20");
     	httpHeaders.setContentDispositionFormData("attachment", fileName);
     	
-    	return new ResponseEntity<>(bytes, httpHeaders, HttpStatus.SC_OK);
+    	return new ResponseEntity<>(bytes, httpHeaders, HttpStatus.OK);
     }
     
-//    private org.springframework.http.MediaType contentType(String keyname) {
-//    	String[] arr = keyname.split("\\.");
-//    	String type = arr[arr.length - 1];
-//    	return MediaType.
-//    }
+    private MediaType contentType(String keyname) {
+    	String[] arr = keyname.split("\\.");
+    	String type = arr[arr.length - 1];
+    	switch(type) {
+    	case "txt" :
+    		return MediaType.TEXT_PLAIN;
+    	case "png" :
+    		return MediaType.IMAGE_PNG;
+    	case "jpg":
+    		return MediaType.IMAGE_JPEG;
+    	default:
+    		return MediaType.APPLICATION_OCTET_STREAM;
+    	}
+    }
     
     
 }

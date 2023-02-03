@@ -38,6 +38,7 @@ public class BoardController {
 	@GetMapping("/detail")
 	public ModelAndView detailGet(ModelAndView mv, @RequestParam("uid") long uid) {
 		BoardDto board = boardService.detailGet(uid);
+		
 		mv.addObject("board", board);
 		mv.setViewName("/board/detail");
 		return mv;
